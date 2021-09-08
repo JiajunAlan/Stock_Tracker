@@ -23,6 +23,7 @@ class Detail_Activity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this,"go back", Toast.LENGTH_SHORT).show()
         }
+
         val tv_DetaiName = findViewById<TextView>(R.id.tv_Detail_name)
         tv_DetaiName.apply { text = message }
     }
