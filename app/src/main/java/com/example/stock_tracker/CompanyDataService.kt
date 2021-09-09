@@ -7,7 +7,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.stock_tracker.model.*
 import java.util.*
 
-class CompanyData(val context: Context) {
+class CompanyDataService(val context: Context) {
     private var ans :MutableList<CompanyModel> = ArrayList()
     val url = "https://71iztxw7wh.execute-api.us-east-1.amazonaws.com/interview/favorite-stocks"
     lateinit var tsla :CompanyModel
