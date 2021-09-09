@@ -26,9 +26,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
-        val rv = findViewById<RecyclerView>(R.id.rv_list)
-        val data = CompanyDataService(this)
-
         //onresume will start the schedule refresh job
     }
 

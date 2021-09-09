@@ -2,4 +2,9 @@
     <string name="app_name">Stock_Tracker</string>
     <string name="initial_title">Popular Stocks</string>
     <string name="Nothing">1</string>
+    <string name="label_Symbol">Symbol</string>
+    <string name="Label_Name">Name</string>
+    <string name="label_Current_Price">Current Price</string>
+    <string name="label_Daily_Low">Daily Low</string>
+    <string name="label_Daily_High">Daily High</string>
 </resources>

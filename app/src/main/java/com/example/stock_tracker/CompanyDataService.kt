@@ -15,6 +15,7 @@ class CompanyDataService(val context: Context) {
     lateinit var crm  :CompanyModel
     lateinit var msft :CompanyModel
     lateinit var pega :CompanyModel
+    lateinit var one  :CompanyModel
 
     interface VolleyResponseListener{
         fun onSuccess(list:MutableList<CompanyModel>)
@@ -42,6 +43,29 @@ class CompanyDataService(val context: Context) {
                 tsla = CompanyModel("TSLA",tslaData.getString("name"),tslaData.getString("price"), tslaData.getString("low"), tslaData.getString("high"))
 
                 ans = mutableListOf(pega,msft,crm,aapl,tsla)
+
+                //Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
+                listener.onSuccess(ans)
+            },
+            { error ->
+                // Handle error
+                //Toast.makeText(context,"Network Error!", Toast.LENGTH_LONG).show()
+                listener.onError("Network Error")
+            }
+        )
+        MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest)
+    }
+
+
+
+    fun getone(name:String, listener: VolleyResponseListener) {
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                val data = response.getJSONObject(name)
+                one = CompanyModel(name,data.getString("name"),data.getString("price"), data.getString("low"), data.getString("high"))
+                ans = mutableListOf(one)
 
                 //Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
                 listener.onSuccess(ans)

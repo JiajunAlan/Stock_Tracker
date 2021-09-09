@@ -1,15 +1,25 @@
 package com.example.stock_tracker
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.stock_tracker.model.CompanyModel
+import org.w3c.dom.Text
+import java.util.*
 
 class Detail_Activity : AppCompatActivity() {
     var name :String= ""
+    var timer: Timer = Timer()
+    val context :Context = this
+    lateinit var info : CompanyModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +43,59 @@ class Detail_Activity : AppCompatActivity() {
 
     }
 
+    fun schedule (){
+        timer.scheduleAtFixedRate(object : TimerTask(){
+            override fun run() {
+                updateInfo()
+                Log.e("refresh detail","get specific up to date price")
+            }
+        },100,10000)
+    }
+
+    private fun updateInfo() {
+        val dataService = CompanyDataService(this)
+        dataService.getone(name, object : CompanyDataService.VolleyResponseListener {
+            override fun onSuccess(list: MutableList<CompanyModel>) {
+                info = list[0]
+                val tv_name_detail :TextView= findViewById(R.id.tv_name_Detail)
+                val tv_fullname_detail : TextView = findViewById(R.id.tv_fullname_Detail)
+                val tv_current :TextView= findViewById(R.id.tv_current_Price_Detail)
+                val tv_low :TextView= findViewById(R.id.tv_daily_low)
+                val tv_high :TextView= findViewById(R.id.tv_daily_high)
+                tv_name_detail.text = info.name
+                tv_fullname_detail.text = info.fullname
+                tv_current.text = info.price
+                tv_low.text = "$" + info.low
+                tv_high.text = "$" + info.high
+                //Toast.makeText(context, list[0].toString(), Toast.LENGTH_SHORT ).show()
+            }
+            override fun onError(message: String) {
+                Toast.makeText(context, "Error!", Toast.LENGTH_SHORT ).show()
+            }
+        })
+    }
+
+    override fun onResume() {
+        this.timer = Timer()
+        schedule()
+        super.onResume()
+    }
+    fun pauseTimer(){
+        this.timer.cancel()
+    }
+
+    //on pause stop timer
     override fun onPause() {
-        finish()
+        pauseTimer()
         super.onPause()
+    }
+
+
+
+    //kill timer when quit
+    override fun onStop() {
+        finish()
+        super.onStop()
     }
 
 }
