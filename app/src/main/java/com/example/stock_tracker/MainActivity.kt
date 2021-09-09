@@ -53,13 +53,16 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-    private fun jumptoDetail(pos: String) {
+    /**jump to detail page. and finish this page to avoid duplicated main activity.
+     * @param name: the name of the stock.
+     * **/
+    private fun jumptoDetail(name: String) {
         val intent = Intent(this, Detail_Activity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, pos)
+            putExtra(EXTRA_MESSAGE, name)
         }
         startActivity(intent)
-        Toast.makeText(this,pos,Toast.LENGTH_SHORT).show()
+        finish()
+        //Toast.makeText(this,pos,Toast.LENGTH_SHORT).show()
     }
 
     /**stop timer

@@ -7,4 +7,5 @@
     <string name="label_Current_Price">Current Price</string>
     <string name="label_Daily_Low">Daily Low</string>
     <string name="label_Daily_High">Daily High</string>
+    <string name="dollarReference">$144.53</string>
 </resources>

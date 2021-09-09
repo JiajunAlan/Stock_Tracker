@@ -21,9 +21,10 @@ class RecyclerViewAdapter(private val dataSet: MutableList<CompanyModel>) :
         val tv_Name: TextView = view.findViewById(R.id.tv_name)
         val tv_FullName: TextView = view.findViewById(R.id.tv_FullName)
         val tv_Price: TextView = view.findViewById(R.id.tv_Price)
-        val back:ImageView = view.findViewById(R.id.back)
+        //val back:ImageView = view.findViewById(R.id.back)
 
-
+        /**@param companyModel: bind companymodel's value to TextView
+         * */
         fun bind(companyModel: CompanyModel){
             tv_Name.setText(companyModel.name)
             tv_FullName.setText(companyModel.fullname)
@@ -50,6 +51,7 @@ class RecyclerViewAdapter(private val dataSet: MutableList<CompanyModel>) :
                 viewHolder.bind(dataSet[position])
             }
         }
+        //onclicker Listener
         viewHolder.itemView.setOnClickListener{
             onItemClick.invoke(it,dataSet[position].name)
         }

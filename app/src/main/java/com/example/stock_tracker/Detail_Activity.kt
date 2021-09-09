@@ -28,7 +28,6 @@ class Detail_Activity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         name = intent.getStringExtra(EXTRA_MESSAGE).toString()
-        Toast.makeText(this,name, Toast.LENGTH_SHORT).show()
 
         val tv_DetaiName = findViewById<TextView>(R.id.tv_Detail_name)
         tv_DetaiName.apply { text = name }
@@ -37,12 +36,12 @@ class Detail_Activity : AppCompatActivity() {
         btn_back.setOnClickListener(){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            //Toast.makeText(this,"go back", Toast.LENGTH_SHORT).show()
+            finish()
         }
-
-
     }
 
+    /**do refresh price number every 10 seconds
+     * */
     fun schedule (){
         timer.scheduleAtFixedRate(object : TimerTask(){
             override fun run() {
@@ -52,6 +51,8 @@ class Detail_Activity : AppCompatActivity() {
         },100,10000)
     }
 
+    /**do get json data and put into TextView
+     * */
     private fun updateInfo() {
         val dataService = CompanyDataService(this)
         dataService.getone(name, object : CompanyDataService.VolleyResponseListener {
@@ -62,12 +63,13 @@ class Detail_Activity : AppCompatActivity() {
                 val tv_current :TextView= findViewById(R.id.tv_current_Price_Detail)
                 val tv_low :TextView= findViewById(R.id.tv_daily_low)
                 val tv_high :TextView= findViewById(R.id.tv_daily_high)
+                //assign value
                 tv_name_detail.text = info.name
                 tv_fullname_detail.text = info.fullname
-                tv_current.text = info.price
+                tv_current.text = "$" + info.price
                 tv_low.text = "$" + info.low
                 tv_high.text = "$" + info.high
-                //Toast.makeText(context, list[0].toString(), Toast.LENGTH_SHORT ).show()
+
             }
             override fun onError(message: String) {
                 Toast.makeText(context, "Error!", Toast.LENGTH_SHORT ).show()
@@ -87,6 +89,7 @@ class Detail_Activity : AppCompatActivity() {
     //on pause stop timer
     override fun onPause() {
         pauseTimer()
+        finish()
         super.onPause()
     }
 

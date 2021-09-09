@@ -11,6 +11,9 @@ class CompanyModel(cname:String,
     val price =cprice
     val high = chigh
     val low = clow
+
+    /**@return Company Model toSting.
+     * */
     override fun toString(): String {
         return "Company name: $name\n" +
                 "Full name: $fullname\n" +

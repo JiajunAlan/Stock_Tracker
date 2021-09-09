@@ -21,12 +21,15 @@ class CompanyDataService(val context: Context) {
         fun onSuccess(list:MutableList<CompanyModel>)
         fun onError(message: String)
     }
-
+    /**@param listener: The call back listerner
+     * @return list:MutableList<CompanyModel>
+     * */
     fun getall(listener: VolleyResponseListener) {
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
+                //Construct Company Models
                 val pegaData = response.getJSONObject("PEGA")
                 pega = CompanyModel("PEGA",pegaData.getString("name"),pegaData.getString("price"), pegaData.getString("low"), pegaData.getString("high"))
 
@@ -42,6 +45,7 @@ class CompanyDataService(val context: Context) {
                 val tslaData = response.getJSONObject("TSLA")
                 tsla = CompanyModel("TSLA",tslaData.getString("name"),tslaData.getString("price"), tslaData.getString("low"), tslaData.getString("high"))
 
+                //add to list
                 ans = mutableListOf(pega,msft,crm,aapl,tsla)
 
                 //Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
@@ -57,30 +61,29 @@ class CompanyDataService(val context: Context) {
     }
 
 
-
+    /**@param name: the name of the Stock you want to look into.
+     * @param listener: The call back listerner
+     * @return list:MutableList<CompanyModel>
+     * */
     fun getone(name:String, listener: VolleyResponseListener) {
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
                 val data = response.getJSONObject(name)
-                one = CompanyModel(name,data.getString("name"),data.getString("price"), data.getString("low"), data.getString("high"))
+                one = CompanyModel(name,data.getString("name"),data.getString("price"), data.getString("high"),data.getString("low"))
                 ans = mutableListOf(one)
 
                 //Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
                 listener.onSuccess(ans)
-
             },
             { error ->
                 // Handle error
                 //Toast.makeText(context,"Network Error!", Toast.LENGTH_LONG).show()
                 listener.onError("Network Error")
-
             }
         )
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest)
-
-
     }
 
 

@@ -54,25 +54,25 @@
         android:id="@+id/tv_name_Detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_Detail_name"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_Detail" />
 
     <TextView
         android:id="@+id/tv_fullname_Detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name_Detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_Detail" />
 
     <TextView
         android:id="@+id/label_Symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_Symbol"
         android:textSize="20sp"
@@ -83,8 +83,8 @@
         android:id="@+id/label_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/Label_Name"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +94,8 @@
         android:id="@+id/label_Current_Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_Current_Price"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,8 +105,8 @@
         android:id="@+id/label_Daily_Low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_Daily_Low"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,38 +116,39 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_Daily_High"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_Daily_Low"
-        android:textSize="20sp" />
+        app:layout_constraintTop_toBottomOf="@+id/label_Daily_Low" />
 
     <TextView
         android:id="@+id/tv_current_Price_Detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="@string/dollarReference"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_fullname_Detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_fullname_Detail" />
 
     <TextView
         android:id="@+id/tv_daily_low"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_current_Price_Detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_current_Price_Detail" />
 
     <TextView
         android:id="@+id/tv_daily_high"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_daily_low"
         app:layout_constraintTop_toBottomOf="@+id/tv_daily_low" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
